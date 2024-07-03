@@ -10,4 +10,10 @@ describe("Pokedex", () => {
       )
     ).toBeVisible();
   });
+
+  test("ivysaur can be navigated to", async ({ page }) => {
+    await page.goto("");
+    await page.click("text=ivysaur");
+    await expect(page.locator("text=chlorophyll")).toBeVisible();
+  });
 });

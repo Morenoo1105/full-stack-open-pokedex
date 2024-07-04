@@ -56,7 +56,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
       - name: A new version of Pokedex deployed and tagged
-        uses: rjstone/discord-webhook-notify@2d99583c5afcbb98ae855619fdfa2f0ec3f371e5
+        uses: rjstone/discord-webhook-notify@v1.0.4
         if: success()
         with:
           severity: info

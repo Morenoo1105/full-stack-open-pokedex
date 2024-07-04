@@ -37,6 +37,7 @@ jobs:
     if: ${{ github.event_name == 'push' && !contains(toJSON(github.event.commits.*.message), '#skip') }}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
+
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag

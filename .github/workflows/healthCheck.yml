@@ -2,7 +2,7 @@ name: Periodic Health Check
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "11 05 29 2 *"
 
 jobs:
   periodic_health_check:
@@ -12,6 +12,7 @@ jobs:
         uses: Jtalk/url-health-check-action@v4
         with:
           url: https://full-stack-open-pokedex-zih1.onrender.com/|https://full-stack-open-pokedex-zih1.onrender.com/health
+
       - name: Build failed
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: failure()
@@ -21,6 +22,7 @@ jobs:
           description: Error.
           details: commit ${{ github.event.head_commit.url }} by ${{ github.event.head_commit.author.username }} broke the build :(
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
       - name: Health check successful
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: success()
@@ -28,6 +30,6 @@ jobs:
           severity: info
           text: Health check successful
           description: Alive
-          details: "Health check successful after ${{ github.event.head_commit.author.username }} commit"
+          details: "Health check successful for https://full-stack-open-pokedex-zih1.onrender.com"
           footer: "Severity: Informational"
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
